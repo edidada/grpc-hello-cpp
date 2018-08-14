@@ -1,9 +1,10 @@
-cmake_minimum_required(VERSION 3.3)
+cmake_minimum_required(VERSION 3.12)
 project(grpc-hello-cpp)
 
-find_package(Protobuf REQUIRED)
-
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+
+find_package(Protobuf REQUIRED)
 
 include_directories(/usr/local/include)
 link_directories(/usr/local/lib)
