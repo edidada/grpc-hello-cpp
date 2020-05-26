@@ -4,7 +4,16 @@ project(grpc-hello-cpp)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
-find_package(Protobuf REQUIRED)
+#execute_process(COMMAND sh ../script/mkdir.sh)
+execute_process(COMMAND sh ../script/protoc.sh)
+
+#set(CMAKE_INSTALL_PREFIX /root/.local)
+
+find_package(Protobuf REQUIRED HINTS "/root/.local")
+
+include_directories(/root/grpc-hello/cpp/protos /root/.local/include)
+link_directories(/root/.local/lib)
+link_directories(/root/.local/lib64)
 
 include_directories(/usr/local/include)
 link_directories(/usr/local/lib)
