@@ -12,8 +12,10 @@ execute_process(COMMAND sh ../script/protoc.sh)
 find_package(Protobuf REQUIRED HINTS "/root/.local")
 
 include_directories(/root/grpc-hello/cpp/protos /root/.local/include)
+link_directories(/root/grpc_1.15.1_withoutgit/cmake/build/third_party/boringssl/ssl)
 link_directories(/root/.local/lib)
 link_directories(/root/.local/lib64)
+link_directories(/root/grpc_1.15.1_withoutgit/cmake/build)
 
 include_directories(/usr/local/include)
 link_directories(/usr/local/lib)
@@ -47,9 +49,12 @@ set(GENERATED_PROTOBUF_FILES ${HELLOWORLD_PB_H_FILE} ${HELLOWORLD_PB_CPP_FILE}
         ${HELLOWORLD_GRPC_PB_H_FILE} ${HELLOWORLD_GRPC_PB_CPP_FILE})
 
 include_directories(${GENERATED_PROTOBUF_PATH})
-link_libraries(grpc++_unsecure grpc gpr ${PROTOBUF_LIBRARY})
+#link_libraries(grpc++_unsecure grpc gpr ${PROTOBUF_LIBRARY})
+link_libraries(protobuf z cares pthread address_sorting crypto ssl grpc++_unsecure grpc gpr)
 
 add_executable(greeter_server greeter_server.cc ${GENERATED_PROTOBUF_FILES})
 add_executable(greeter_client greeter_client.cc ${GENERATED_PROTOBUF_FILES})
 add_executable(greeter_async_server async/greeter_async_server.cc ${GENERATED_PROTOBUF_FILES})
 add_executable(greeter_async_client async/greeter_async_client.cc ${GENERATED_PROTOBUF_FILES})
+link_libraries(greeter_async_client protobuf)
+link_libraries(greeter_async_server protobuf address_sorting)
