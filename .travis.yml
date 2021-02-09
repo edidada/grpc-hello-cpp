@@ -35,11 +35,11 @@ before_script:
   - cd vcpkg
   - ./bootstrap-vcpkg.sh
   - ./vcpkg integrate install
-  - sudo ln -s vcpkg /usr/bin
+  - sudo ln -s /home/travis/build/edidada/vcpkg/vcpkg /usr/bin
 #  - which vcpkg
-  - /home/travis/build/edidada/vcpkg/vcpkg search sqlite
-  - /home/travis/build/edidada/vcpkg/vcpkg install grpc
-  - /home/travis/build/edidada/vcpkg/vcpkg list
+  - vcpkg search sqlite
+  - vcpkg install grpc
+  - vcpkg list
 
 env:
   - BUILD_TYPE=debug
