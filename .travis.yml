@@ -1,6 +1,7 @@
 language: cpp
 sudo: required
-dist: xenial
+#dist: xenial
+dist: bionic
 compiler:
   - gcc
   #- clang
@@ -36,9 +37,9 @@ before_script:
   - ./vcpkg integrate install
   - sudo ln -s vcpkg /usr/bin
   - which vcpkg
-  - vcpkg search sqlite
-  - vcpkg install sqlite3
-  - vcpkg list
+  - /home/travis/build/edidada/vcpkg/vcpkg search sqlite
+  - /home/travis/build/edidada/vcpkg/vcpkg install sqlite3
+  - /home/travis/build/edidada/vcpkg/vcpkg list
 
 env:
   - BUILD_TYPE=debug
@@ -48,6 +49,6 @@ script:
   - pwd
   - mkdir build
   - cd build
-  - cmake .. "-DCMAKE_TOOLCHAIN_FILE=/usr/local/vcpkg/scripts/buildsystems/vcpkg.cmake"
+  - cmake .. "-DCMAKE_TOOLCHAIN_FILE=/home/travis/build/edidada/vcpkg/scripts/buildsystems/vcpkg.cmake"
   - cmake --build .
   - make VERBOSE=1
