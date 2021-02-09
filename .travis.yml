@@ -38,7 +38,7 @@ before_script:
   - sudo ln -s vcpkg /usr/bin
   - which vcpkg
   - /home/travis/build/edidada/vcpkg/vcpkg search sqlite
-  - /home/travis/build/edidada/vcpkg/vcpkg install sqlite3
+  - /home/travis/build/edidada/vcpkg/vcpkg install grpc
   - /home/travis/build/edidada/vcpkg/vcpkg list
 
 env:
