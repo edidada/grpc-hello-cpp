@@ -1,0 +1,52 @@
+language: cpp
+sudo: required
+dist: xenial
+compiler:
+  - gcc
+  #- clang
+os:
+  - linux
+install:
+addons:
+  apt:
+    update: true
+
+before_script:
+  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+  - sudo apt-get update -y
+  - sudo apt-get install g++-7 -y
+  - sudo apt install -y gcc-7 gcc-7-multilib g++-7 g++-7-multilib
+  - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 100
+  - which gcc
+  - gcc --version
+  - which g++
+  - g++ --version
+  - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 100
+  - sudo update-alternatives --config gcc
+  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 100
+  - sudo update-alternatives --config g++
+  - which gcc
+  - gcc --version
+  - which g++
+  - g++ --version
+  - cd /usr/local
+  - git clone https://github.com/Microsoft/vcpkg.git
+  - cd vcpkg
+  - ./bootstrap-vcpkg.sh
+  - ./vcpkg integrate install
+  - sudo ln -s vcpkg /usr/bin
+  - vcpkg search sqlite
+  - vcpkg install sqlite3
+  - vcpkg list
+
+env:
+  - BUILD_TYPE=debug
+script:
+  # once CMake has done its job we just build using make as usual
+  - find / -name "vcpkg.cmake"
+  - pwd
+  - mkdir build
+  - cd build
+  - cmake .. "-DCMAKE_TOOLCHAIN_FILE=/usr/local/vcpkg/scripts/buildsystems/vcpkg.cmake"
+  - cmake --build .
+  - make VERBOSE=1
