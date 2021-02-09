@@ -36,7 +36,7 @@ before_script:
   - ./bootstrap-vcpkg.sh
   - ./vcpkg integrate install
   - sudo ln -s vcpkg /usr/bin
-  - which vcpkg
+#  - which vcpkg
   - /home/travis/build/edidada/vcpkg/vcpkg search sqlite
   - /home/travis/build/edidada/vcpkg/vcpkg install grpc
   - /home/travis/build/edidada/vcpkg/vcpkg list
