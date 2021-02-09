@@ -29,12 +29,13 @@ before_script:
   - gcc --version
   - which g++
   - g++ --version
-  - cd /usr/local
+  - cd ..
   - git clone https://github.com/Microsoft/vcpkg.git
   - cd vcpkg
   - ./bootstrap-vcpkg.sh
   - ./vcpkg integrate install
   - sudo ln -s vcpkg /usr/bin
+  - which vcpkg
   - vcpkg search sqlite
   - vcpkg install sqlite3
   - vcpkg list
