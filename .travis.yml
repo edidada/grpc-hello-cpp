@@ -45,8 +45,9 @@ env:
   - BUILD_TYPE=debug
 script:
   # once CMake has done its job we just build using make as usual
-  - find / -name "vcpkg.cmake"
+  - find /home/travis/build/edidada -name "vcpkg.cmake"
   - pwd
+  - cd grpc-hello-cpp
   - mkdir build
   - cd build
   - cmake .. "-DCMAKE_TOOLCHAIN_FILE=/home/travis/build/edidada/vcpkg/scripts/buildsystems/vcpkg.cmake"
