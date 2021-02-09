@@ -13,6 +13,7 @@ addons:
     update: true
 
 before_script:
+  - pwd
   - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
   - sudo apt-get update -y
   - sudo apt-get install g++-7 -y
@@ -47,7 +48,7 @@ script:
   # once CMake has done its job we just build using make as usual
   - find /home/travis/build/edidada -name "vcpkg.cmake"
   - pwd
-  - cd grpc-hello-cpp
+  - cd ../grpc-hello-cpp
   - mkdir build
   - cd build
   - cmake .. "-DCMAKE_TOOLCHAIN_FILE=/home/travis/build/edidada/vcpkg/scripts/buildsystems/vcpkg.cmake"
