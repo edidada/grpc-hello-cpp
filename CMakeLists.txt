@@ -42,10 +42,10 @@ add_executable(greeter_async_client async/greeter_async_client.cc ${GENERATED_PR
 
 find_package(gRPC CONFIG REQUIRED)
 # Note: 8 target(s) were omitted.
-target_link_libraries(greeter_server PRIVATE gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc_cronet)
-target_link_libraries(greeter_client PRIVATE gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc_cronet)
-target_link_libraries(greeter_async_server PRIVATE gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc_cronet)
-target_link_libraries(greeter_async_client PRIVATE gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc_cronet)
+target_link_libraries(greeter_server gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc++_alts)
+#target_link_libraries(greeter_client PRIVATE gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc_cronet)
+#target_link_libraries(greeter_async_server PRIVATE gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc_cronet)
+#target_link_libraries(greeter_async_client PRIVATE gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc_cronet)
 
 #find_package(modules CONFIG REQUIRED)
 #target_link_libraries(greeter_server PRIVATE re2::re2 c-ares::cares)
