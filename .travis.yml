@@ -53,7 +53,9 @@ script:
   - cd build
   - cmake .. "-DCMAKE_TOOLCHAIN_FILE=/home/travis/build/edidada/vcpkg/scripts/buildsystems/vcpkg.cmake"
   - ls /home/travis/build/edidada/vcpkg/packages
-  - find /home/travis/build/edidada -name "helloworld.grpc.pb.cc"
-  - find /home/travis/build/edidada -name "helloworld.pb.cc"
+#  - find /home/travis/build/edidada -name "helloworld.grpc.pb.cc"
+#  - find /home/travis/build/edidada -name "helloworld.pb.cc"
+  - cp protos/helloworld.pb.cc build/generated
+  - cp protos/helloworld.grpc.pb.cc build/generated
   - cmake --build .
   - make VERBOSE=1
