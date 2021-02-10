@@ -46,5 +46,5 @@ target_link_libraries(greeter_server PRIVATE gRPC::gpr gRPC::grpc gRPC::grpc++ g
 target_link_libraries(greeter_client PRIVATE gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc_cronet)
 target_link_libraries(greeter_async_server PRIVATE gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc_cronet)
 target_link_libraries(greeter_async_client PRIVATE gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc_cronet)
-#find_package(modules CONFIG REQUIRED)
-#target_link_libraries(greeter_server PRIVATE re2::re2 c-ares::cares)
+find_package(modules CONFIG REQUIRED)
+target_link_libraries(greeter_server PRIVATE re2::re2 c-ares::cares)
