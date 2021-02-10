@@ -67,4 +67,4 @@ script:
   - cp ../protos/helloworld.pb.h ../async
   - cp ../protos/helloworld.grpc.pb.h ../async
   - cmake --build .
-  - make VERBOSE=1
+#  - make VERBOSE=1
