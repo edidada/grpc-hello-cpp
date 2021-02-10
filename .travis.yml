@@ -56,7 +56,9 @@ script:
 #  - ls /home/travis/build/edidada/vcpkg/packages
 #  - find /home/travis/build/edidada -name "helloworld.grpc.pb.cc"
 #  - find /home/travis/build/edidada -name "helloworld.pb.cc"
+  - cp ../protos/helloworld.pb.h generated
   - cp ../protos/helloworld.pb.cc generated
+  - cp ../protos/helloworld.grpc.pb.h generated
   - cp ../protos/helloworld.grpc.pb.cc generated
   - cmake --build .
   - make VERBOSE=1
