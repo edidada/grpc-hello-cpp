@@ -108,3 +108,5 @@ CTestTestfile.cmake
 *.out
 *.app
 
+helloworld.grpc.pb.h
+helloworld.pb.h

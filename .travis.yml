@@ -62,7 +62,7 @@ script:
   - cp ../protos/helloworld.grpc.pb.cc generated
   - cp ../protos/helloworld.pb.h ../
   - cp ../protos/helloworld.grpc.pb.h ../
-  - - cp ../protos/helloworld.pb.h ../async
-    - cp ../protos/helloworld.grpc.pb.h ../async
+  - cp ../protos/helloworld.pb.h ../async
+  - cp ../protos/helloworld.grpc.pb.h ../async
   - cmake --build .
   - make VERBOSE=1
