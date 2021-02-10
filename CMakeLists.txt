@@ -7,17 +7,6 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 #execute_process(COMMAND sh ../script/mkdir.sh)
 execute_process(COMMAND sh ../script/protoc.sh)
 
-#set(CMAKE_INSTALL_PREFIX /root/.local)
-
-find_package(Protobuf REQUIRED HINTS "/root/.local")
-
-include_directories(/root/grpc-hello/cpp/protos /root/.local/include)
-link_directories(/root/.local/lib)
-link_directories(/root/.local/lib64)
-
-include_directories(/usr/local/include)
-link_directories(/usr/local/lib)
-
 set(PROTO_PATH "${CMAKE_SOURCE_DIR}/protos")
 set(HELLOWORLD_PROTO "${PROTO_PATH}/helloworld.proto")
 set(GENERATED_PROTOBUF_PATH "${CMAKE_BINARY_DIR}/generated")
@@ -27,6 +16,7 @@ set(HELLOWORLD_PB_CPP_FILE "${GENERATED_PROTOBUF_PATH}/helloworld.pb.cc")
 set(HELLOWORLD_PB_H_FILE "${GENERATED_PROTOBUF_PATH}/helloworld.pb.h")
 set(HELLOWORLD_GRPC_PB_CPP_FILE "${GENERATED_PROTOBUF_PATH}/helloworld.grpc.pb.cc")
 set(HELLOWORLD_GRPC_PB_H_FILE "${GENERATED_PROTOBUF_PATH}/helloworld.grpc.pb.h")
+
 
 add_custom_command(
         OUTPUT "${HELLOWORLD_PB_H_FILE}"
@@ -45,11 +35,16 @@ add_custom_command(
 )
 set(GENERATED_PROTOBUF_FILES ${HELLOWORLD_PB_H_FILE} ${HELLOWORLD_PB_CPP_FILE}
         ${HELLOWORLD_GRPC_PB_H_FILE} ${HELLOWORLD_GRPC_PB_CPP_FILE})
-
-include_directories(${GENERATED_PROTOBUF_PATH})
-link_libraries(grpc++_unsecure grpc gpr ${PROTOBUF_LIBRARY})
-
 add_executable(greeter_server greeter_server.cc ${GENERATED_PROTOBUF_FILES})
 add_executable(greeter_client greeter_client.cc ${GENERATED_PROTOBUF_FILES})
 add_executable(greeter_async_server async/greeter_async_server.cc ${GENERATED_PROTOBUF_FILES})
 add_executable(greeter_async_client async/greeter_async_client.cc ${GENERATED_PROTOBUF_FILES})
+
+find_package(gRPC CONFIG REQUIRED)
+# Note: 8 target(s) were omitted.
+target_link_libraries(greeter_server PRIVATE gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc_cronet)
+target_link_libraries(greeter_client PRIVATE gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc_cronet)
+target_link_libraries(greeter_async_server PRIVATE gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc_cronet)
+target_link_libraries(greeter_async_client PRIVATE gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc_cronet)
+#find_package(modules CONFIG REQUIRED)
+#target_link_libraries(greeter_server PRIVATE re2::re2 c-ares::cares)

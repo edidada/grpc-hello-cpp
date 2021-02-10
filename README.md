@@ -3,6 +3,21 @@ gRPC C++ Hello World Tutorial
 
 # Setup
 
+`vckpg install grpc`
+/usr/local/bin/protoc
+
+
+/Users/ibqo/vcpkg/packages/grpc_x64-osx/tools/grpc/grpc_cpp_plugin
+
+
+```cmake
+    find_package(gRPC CONFIG REQUIRED)
+    # Note: 7 target(s) were omitted.
+    target_link_libraries(main PRIVATE gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc++_alts)
+    find_package(modules CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE re2::re2 c-ares::cares)
+```
+
 * Build protobuf from source to install header files, libs & camke files https://github.com/google/protobuf/blob/master/src/README.md
 * Then use Clion to open project
 
