@@ -32,12 +32,11 @@
 # .idea/modules
 .idea/
 
-/cmake-build-debug_vcpkg
-/cmake-build-debug
-/cmake-build-release
 
 # CMake
 cmake-build-*/
+protos/*.h
+protos/*.cc
 
 # Mongo Explorer plugin
 .idea/**/mongoSettings.xml
