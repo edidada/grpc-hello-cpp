@@ -44,7 +44,6 @@ jobs:
       ./bootstrap-vcpkg.sh
       ./vcpkg integrate install
       sudo ln -s /home/travis/build/edidada/vcpkg/vcpkg /usr/bin
-  #  - which vcpkg
       vcpkg search sqlite
       vcpkg install grpc
       vcpkg list
